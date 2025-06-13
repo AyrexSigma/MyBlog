@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts by {{ author.name }}</title>
+</head>
+<body>
+    <h1>Posts by {{ author.name }}</h1>
+    <p>{{ author.bio }}</p>
+
+    {% for post in posts %}
+        <article>
+            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+            <time>{{ post.published_date }}</time>
+            <p>{{ post.content|truncatechars:150 }}</p>
+        </article>
+    {% endfor %}
+</body>
+</html>
