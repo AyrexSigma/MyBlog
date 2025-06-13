@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>By <a href="{% url 'author_posts' post.author.id %}">{{ post.author.name }}</a></p>
+    <time>{{ post.published_date }}</time>
+    <p>{{ post.content }}</p>
+
+    <h2>Comments</h2>
+    {% for comment in post.comments.all %}
+        <div>
+            <strong>{{ comment.author_name }}</strong>
+            <time>{{ comment.created_date }}</time>
+            <p>{{ comment.text }}</p>
+        </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+</body>
+</html>
